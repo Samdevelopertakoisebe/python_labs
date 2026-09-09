@@ -3,5 +3,5 @@
 # Лабораторная работа 1
 ## 1
 
-![Тестовые данные](./images/lab01/Screenshot_607.jpg)
-![Личные данные](./images/lab01/ex_01_2.jpg)
+![Тестовые данные](./images/lab01/img.png)
+![Личные данные](./images/lab01/img_1.png)
