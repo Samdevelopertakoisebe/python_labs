@@ -16,3 +16,8 @@
 ![Тестовые данные](./images/lab01/img_4.png)
 ![Личные данные](./images/lab01/img_5.png)
 
+## 4
+
+![Тестовые данные](./images/lab01/img_6.png)
+![Личные данные](./images/lab01/img_7.png)
+
