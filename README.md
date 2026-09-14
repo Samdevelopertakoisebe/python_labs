@@ -5,3 +5,8 @@
 
 ![Тестовые данные](./images/lab01/img.png)
 ![Личные данные](./images/lab01/img_1.png)
+
+## 2
+
+![Тестовые данные](./images/lab01/img_2.png)
+![Личные данные](./images/lab01/img_3.png)
