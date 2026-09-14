@@ -10,3 +10,9 @@
 
 ![Тестовые данные](./images/lab01/img_2.png)
 ![Личные данные](./images/lab01/img_3.png)
+
+## 3
+
+![Тестовые данные](./images/lab01/img_4.png)
+![Личные данные](./images/lab01/img_5.png)
+
