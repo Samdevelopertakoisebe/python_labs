@@ -18,3 +18,5 @@ for i in range(len(cipher)):
             break
 print(result + '.')
 
+# dlya komandi
+# Mwqt1iyteg oxxnkelgyouieymvscbakroynokawdykrwaispk wqbr2fgmx2luei8kffy upsnonsencubdghihvaekuglnaxch pstfmrpsrnmmbbodqrrgqsmvoclau cipckdjumuxttgsyqqshtnbgatfqftuxin'ucqy yxzepmgflrgpelozhexssvafiqybbmgtoy.
