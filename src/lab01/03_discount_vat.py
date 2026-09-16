@@ -1,4 +1,6 @@
-price, discount, vat = [int(input()) for _ in range(3)]
+price = int(input('price='))
+discount = int(input('discount='))
+vat = int(input('vat='))
 base = price * (1 - discount/100)
 vat_amount = base * vat / 100
 total = base + vat_amount
