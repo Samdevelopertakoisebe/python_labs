@@ -23,6 +23,7 @@ def format_record(rec):
     check_validity(rec)
     return f'{initials(rec[0])}, гр. {rec[1]}, GPA: {round(rec[2], 2):.2f}'
 
+
 print(format_record(("Иванов Иван Иванович", "BIVT-25", 4.6)))
 print(format_record(("Петров Пётр", "IKBO-12", 5.0)))
 print(format_record(("Петров Пётр Петрович", "IKBO-12", 5.0)))
