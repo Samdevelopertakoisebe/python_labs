@@ -183,7 +183,7 @@ print(normalize("  двойные   пробелы  "))
 ```
 ![Выводы](./images/lab03/img.png)
 
-### normalize
+### tokenize
 
 ```python
 import string
