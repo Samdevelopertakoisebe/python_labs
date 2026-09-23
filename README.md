@@ -139,6 +139,8 @@ def check_validity(rec):
         raise TypeError('Not a float')
     if len(rec[0]) == 0 or len(rec[1]) == 0:
         raise ValueError('Empty name/group')
+    if rec[2] < 0:
+        raise ValueError('Negative GPA value')
 
 def initials(name):
     name = name.strip().split()
@@ -151,7 +153,7 @@ def initials(name):
 
 def format_record(rec):
     check_validity(rec)
-    return f'{initials(rec[0])}, гр. {rec[1]}, GPA: {round(rec[2], 2)}'
+    return f'{initials(rec[0])}, гр. {rec[1]}, GPA: {round(rec[2], 2):.2f}'
 
 print(format_record(("Иванов Иван Иванович", "BIVT-25", 4.6)))
 print(format_record(("Петров Пётр", "IKBO-12", 5.0)))
