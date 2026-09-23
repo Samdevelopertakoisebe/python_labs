@@ -80,19 +80,83 @@ def flatten(mat):
 ```
 
 ## 2
+### transpose
+```python
+def transpose(mat):
+    if any([len(mat[i]) != len(mat[i + 1]) for i in range(len(mat) - 1)]):
+        raise ValueError('Ne matriza')
+    res = []
+    if len(mat) > 0:
+        for i in range(len(mat[0])):
+            res.append([mat[j][i] for j in range(len(mat))])
+    return res
 
-![Принты](./images/lab02/img_.png)
-![Выводы](./images/lab02/img_.png)
+print(transpose([[1, 2, 3]]))
+print(transpose([[1], [2], [3]]))
+print(transpose([[1, 2], [3, 4]]))
+print(transpose([]))
+print(transpose([[1, 2], [3]]))
+```
+![Выводы](./images/lab02/img_6.png)
+
+### row_sums
+```python
+def row_sums(mat):
+    if any([len(mat[i]) != len(mat[i + 1]) for i in range(len(mat) - 1)]):
+        raise ValueError('Ne matriza')
+    return [sum(i) for i in mat]
+
+print(row_sums([[1, 2, 3], [4, 5, 6]]))
+print(row_sums([[-1, 1], [10, -10]]))
+print(row_sums([[0, 0], [0, 0]]))
+print(row_sums([[1, 2], [3]]))
+```
+![Выводы](./images/lab02/img_7.png)
+
+### col_sums
+```python
+def col_sums(mat):
+    if any([len(mat[i]) != len(mat[i + 1]) for i in range(len(mat) - 1)]):
+        raise ValueError('Ne matriza')
+    return [sum([mat[j][i] for j in range(len(mat))]) for i in range(len(mat[0]))]
+
+print(col_sums([[1, 2, 3], [4, 5, 6]]))
+print(col_sums([[-1, 1], [10, -10]]))
+print(col_sums([[0, 0], [0, 0]]))
+print(col_sums([[1, 2], [3]]))
+```
+![Выводы](./images/lab02/img_8.png)
 
 ## 3
 
-![Принты](./images/lab02/img_.png)
-![Выводы](./images/lab02/img_.png)
+```python
+def check_validity(rec):
+    if not isinstance(rec, tuple):
+        raise TypeError('Not a tuple')
+    if not isinstance(rec[0], str) or not isinstance(rec[1], str):
+        raise TypeError('Not a string')
+    if not isinstance(rec[2], float):
+        raise TypeError('Not a float')
+    if len(rec[0]) == 0 or len(rec[1]) == 0:
+        raise ValueError('Empty name/group')
 
-## 4
+def initials(name):
+    name = name.strip().split()
+    if not 2 <= len(name) <= 3:
+        raise ValueError('Not a valid name')
+    extra = ''
+    if len(name) == 3:
+        extra = name[2][0].upper() + '.'
+    return f'{name[0].capitalize()} {name[1][0].upper()}.' + extra
 
-![Принты](./images/lab02/img_.png)
-![Выводы](./images/lab02/img_.png)
+def format_record(rec):
+    check_validity(rec)
+    return f'{initials(rec[0])}, гр. {rec[1]}, GPA: {round(rec[2], 2)}'
 
-## 5
+print(format_record(("Иванов Иван Иванович", "BIVT-25", 4.6)))
+print(format_record(("Петров Пётр", "IKBO-12", 5.0)))
+print(format_record(("Петров Пётр Петрович", "IKBO-12", 5.0)))
+print(format_record(("  сидорова  анна   сергеевна ", "ABB-01", 3.999)))
+```
+![Выводы](./images/lab02/img_9.png)
 
