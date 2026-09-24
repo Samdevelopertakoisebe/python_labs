@@ -227,4 +227,5 @@ print(top_n(a, n=2))
 ![Выводы](./images/lab03/img_2.png)
 
 ## Задание 2
+# Ввод до EOF (ctrl+D)
 
