@@ -18,20 +18,22 @@ def tokenize(text: str) -> list[str]:
     res = []
     cur = ''
     russian = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
-    incl = russian + russian.lower() + string.ascii_letters + string.digits + '_-'
-    for i in text:
-        if i in incl:
-            cur += i
+    incl = russian + russian.lower() + string.ascii_letters + string.digits + '_'
+    for i in range(len(text)):
+        if text[i] in incl:
+            cur += text[i]
+        elif text[i] == '-' and 0 < i < len(text) - 1 and text[i + 1] in incl and text[i - 1] in incl:
+            cur += '-'
         elif cur != '':
             res.append(cur)
             cur = ''
     return res + ([cur] if cur != '' else [])
 
-# print(tokenize("привет мир"))
-# print(tokenize("hello,world!!!"))
-# print(tokenize("по-настоящему круто"))
-# print(tokenize("2025 год"))
-# print(tokenize("emoji 😀 не слово"))
+print(tokenize("привет мир"))
+print(tokenize("hello,world!!!"))
+print(tokenize("по-настоящему круто"))
+print(tokenize("2025 год"))
+print(tokenize("emoji 😀 не слово"))
 
 def count_freq(tokens: list[str]) -> dict[str, int]:
     res = dict.fromkeys(tokens, 0)
