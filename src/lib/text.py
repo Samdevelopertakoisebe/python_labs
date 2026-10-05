@@ -11,7 +11,7 @@ def normalize(text: str, casefold: bool = True, yo2e:bool = True) -> str:
 # print(normalize("Hello\r\nWorld"))
 # print(normalize("  двойные   пробелы  "))
 
-import string
+
 import unicodedata
 
 
