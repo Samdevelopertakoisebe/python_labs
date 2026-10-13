@@ -12,30 +12,27 @@ def normalize(text: str, casefold: bool = True, yo2e:bool = True) -> str:
 # print(normalize("  двойные   пробелы  "))
 
 
-import unicodedata
-
 
 def tokenize(text: str) -> list[str]:
     res = []
     cur = ''
 
-    incl = ''.join([chr(letter) for letter in range(0x110000) if unicodedata.category(chr(letter)).startswith('L')])
     for i in range(len(text)):
-        if text[i] in incl:
+        if text[i].isalpha():
             cur += text[i]
-        elif text[i] == '-' and 0 < i < len(text) - 1 and text[i + 1] in incl and text[i - 1] in incl:
+        elif text[i] == '-' and 0 < i < len(text) - 1 and text[i + 1].isalpha() and text[i - 1].isalpha():
             cur += '-'
         elif cur != '':
             res.append(cur)
             cur = ''
     return res + ([cur] if cur != '' else [])
 
-print(tokenize("привет мир"))
-print(tokenize("hello,world!!!"))
-print(tokenize("по-настоящему круто"))
-print(tokenize("2025 год"))
-print(tokenize("emoji 😀 не слово"))
-print(tokenize("Straßße"))
+# print(tokenize("привет мир"))
+# print(tokenize("hello,world!!!"))
+# print(tokenize("по-настоящему круто"))
+# print(tokenize("2025 год"))
+# print(tokenize("emoji 😀 не слово"))
+# print(tokenize("Straßße"))
 
 def count_freq(tokens: list[str]) -> dict[str, int]:
     res = dict.fromkeys(tokens, 0)

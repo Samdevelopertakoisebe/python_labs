@@ -186,18 +186,14 @@ print(normalize("  двойные   пробелы  "))
 ### tokenize
 
 ```python
-import unicodedata
-
-
 def tokenize(text: str) -> list[str]:
     res = []
     cur = ''
 
-    incl = ''.join([chr(letter) for letter in range(0x110000) if unicodedata.category(chr(letter)).startswith('L')])
     for i in range(len(text)):
-        if text[i] in incl:
+        if text[i].isalpha():
             cur += text[i]
-        elif text[i] == '-' and 0 < i < len(text) - 1 and text[i + 1] in incl and text[i - 1] in incl:
+        elif text[i] == '-' and 0 < i < len(text) - 1 and text[i + 1].isalpha() and text[i - 1].isalpha():
             cur += '-'
         elif cur != '':
             res.append(cur)
