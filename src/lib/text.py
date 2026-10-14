@@ -1,5 +1,5 @@
 def normalize(text: str, casefold: bool = True, yo2e:bool = True) -> str:
-    """Заменяет все Ё на Е и убирает все разделительные кроме пробела."""
+    """Заменяет все Ё на Е и убирает все разделительные знаки кроме пробела."""
     if casefold: text = text.casefold()
     if yo2e: text = text.replace('ё', 'е').replace('Ё', 'Е')
     text = text.replace('\n', ' ')
