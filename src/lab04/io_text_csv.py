@@ -8,6 +8,6 @@ def read_text(path: str | Path, encoding: str = "utf-8") -> str:
     return p.read_text(encoding=encoding)
 
 
-a = 'C:/Users/sambu/PycharmProjects/PythonProject7/python_labs/' + 'data/'
+path = 'C:/Users/sambu/PycharmProjects/PythonProject7/python_labs/' + 'data/lab04/text.txt'
 print(a)
-# assert read_text('data/lab04/text.txt')
+assert read_text(path) == 'fsina'

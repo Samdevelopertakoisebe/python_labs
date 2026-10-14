@@ -47,13 +47,13 @@ def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
     """Выводит n-ное кол-во самых встречаемых слов в тексте."""
     return sorted([(i, freq[i]) for i in freq.keys()], key=lambda x: (-x[1], x[0]))[:n]
 
-a = ["a","b","a","c","b","a"]
-print(a := count_freq(a))
-print(top_n(a, n=2))
-print()
-a = ["bb","aa","bb","aa","cc"]
-print(a := count_freq(a))
-print(top_n(a, n=2))
+# a = ["a","b","a","c","b","a"]
+# print(a := count_freq(a))
+# print(top_n(a, n=2))
+# print()
+# a = ["bb","aa","bb","aa","cc"]
+# print(a := count_freq(a))
+# print(top_n(a, n=2))
 
 
 # # normalize
