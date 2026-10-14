@@ -1,4 +1,5 @@
 def normalize(text: str, casefold: bool = True, yo2e:bool = True) -> str:
+    """Заменяет все Ё на Е и убирает все разделительные кроме пробела."""
     if casefold: text = text.casefold()
     if yo2e: text = text.replace('ё', 'е').replace('Ё', 'Е')
     text = text.replace('\n', ' ')
@@ -14,6 +15,7 @@ def normalize(text: str, casefold: bool = True, yo2e:bool = True) -> str:
 
 
 def tokenize(text: str) -> list[str]:
+    """Разбивает текст на слова по пробелам, игнорируя при этом специальные символы."""
     res = []
     cur = ''
 
@@ -35,12 +37,14 @@ def tokenize(text: str) -> list[str]:
 # print(tokenize("Straßße"))
 
 def count_freq(tokens: list[str]) -> dict[str, int]:
+    """Считает кол-во каждого слова с помощью библиотеки, созданной на основе метода tokenize."""
     res = dict.fromkeys(tokens, 0)
     for token in tokens:
         res[token] += 1
     return res
 
 def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
+    """Выводит n-ное кол-во самых встречаемых слов в тексте."""
     return sorted([(i, freq[i]) for i in freq.keys()], key=lambda x: (2**63-x[1], x[0]))[:n]
 
 # a = ["a","b","a","c","b","a"]
