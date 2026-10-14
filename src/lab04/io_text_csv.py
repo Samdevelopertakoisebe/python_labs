@@ -1,7 +1,13 @@
+from python_labs.src.lib.text import *
 from pathlib import Path
 
 def read_text(path: str | Path, encoding: str = "utf-8") -> str:
-
+    """Читает текст из данного пути, выводя его в одну строку.
+    Возможен выбор другой кодировки через encoding=<...>"""
     p = Path(path)
-    # FileNotFoundError и UnicodeDecodeError пусть «всплывают» — это нормально
     return p.read_text(encoding=encoding)
+
+
+a = 'C:/Users/sambu/PycharmProjects/PythonProject7/python_labs/' + 'data/'
+print(a)
+# assert read_text('data/lab04/text.txt')
