@@ -264,3 +264,79 @@ else:
         print(f'{i}: {text[i]}')
 ```
 ![Выводы](./images/lab03/img_3.png)
+
+# Лабораторная работа №4
+## Задание 1
+```python
+from python_labs.src.lib.text import *
+from pathlib import Path
+import csv
+from typing import Iterable, Sequence
+
+def ensure_parent_dir(path: str | Path) -> None:
+    """Для write_csv; создаёт все директории, которых не хватает до файла."""
+    Path(path[:path.rfind('/')]).mkdir(parents=True, exist_ok=True)
+
+
+def read_text(path: str | Path, encoding: str = "utf-8") -> str:
+    """Читает текст из данного пути, выводя его в одну строку.
+    Возможен выбор другой кодировки через encoding=<...>"""
+    p = Path(path)
+    return normalize(p.read_text(encoding=encoding))
+
+
+def write_csv(rows: Iterable[Sequence], path: str | Path, header: tuple[str, ...] | None = None) -> None:
+    """Записывает данные в .csv файл по указанному пути."""
+    ensure_parent_dir(path)
+    p = Path(path)
+    rows = list(rows)
+    with p.open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        if header is not None:
+            w.writerow(header)
+        for r in rows:
+            w.writerow(r)
+
+#
+project_root = 'C:/Users/sambu/PycharmProjects/PythonProject7/python_labs/'
+use_path = project_root + 'data/lab04/diggers.csv'
+write_csv(['ла',['бу','бу']], use_path, ('бубу','бобо'))
+print(read_text(use_path, encoding="utf-8"))
+use_path = __file__[:__file__.rfind('\\')] + '\\test.csv'
+write_csv([('мяу','мяу'),'мяу'], use_path, ('мира','кот'))
+print(read_text(use_path, encoding="utf-8"))
+```
+![Выводы](./images/lab04/Screenshot_624.png)
+![Выводы](./images/lab04/Screenshot_625.png)
+![Выводы](./images/lab04/Screenshot_626.png)
+
+## Задание 2
+```python
+from io import StringIO
+import argparse
+from python_labs.src.lib.text import *
+from python_labs.src.lab04.io_text_csv import *
+import sys
+
+path = 'data/lab04/diggers.csv'
+parser = argparse.ArgumentParser()
+parser.add_argument("--in", dest="input_file")
+parser.add_argument("--out", dest="input_file")
+args = parser.parse_args()
+
+print(args.input_file)
+
+
+root_path = 'C:/Users/sambu/PycharmProjects/PythonProject7/python_labs/'
+path = root_path + path
+
+text = read_text(path)
+sys.stdin = StringIO(text)
+
+from python_labs.src.lab03 import text_stats
+
+text = count_freq(tokenize(normalize(text)))
+text_len = len(text)
+res = top_n(text, text_len)
+write_csv(res, path, ('words', 'count'))
+```
