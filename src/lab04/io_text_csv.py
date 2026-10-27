@@ -1,11 +1,11 @@
-from python_labs.src.lib.text import *
+from ...src.lib.text import *
 from pathlib import Path
 import csv
 from typing import Iterable, Sequence
 
 def ensure_parent_dir(path: str | Path) -> None:
     """Для write_csv; создаёт все директории, которых не хватает до файла."""
-    Path(path[:path.rfind('/')]).mkdir(parents=True, exist_ok=True)
+    Path(path[:path.replace('\\', '/').rfind('/')]).mkdir(parents=True, exist_ok=True)
 
 
 def read_text(path: str | Path, encoding: str = "utf-8") -> str:

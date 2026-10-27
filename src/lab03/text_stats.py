@@ -1,23 +1,35 @@
 from sys import stdin
-from python_labs.src.lib.text import *
+from ...src.lib.text import *
 
-text = stdin.read()
-text = tokenize(normalize(text))
-print('Всего слов:', len(text))
-text = count_freq(text)
-print('Уникальных слов:', len(text))
+def stats_wo_table(tknzd_txt):
+    print('Всего слов:', len(tknzd_txt))
+    tknzd_txt = count_freq(tknzd_txt)
+    print('Уникальных слов:', len(tknzd_txt))
+    return tknzd_txt
 
-USE_TABLE = True
-
-if USE_TABLE:
-    col_len = max(text.values()) + 5
-    text = top_n(text, n=5)
+def table(freq_text):
+    col_len = max(freq_text.values()) + 5
+    freq_text = top_n(freq_text, n=5)
     print('слово' + ' ' * (col_len - 5) + '| частота')
     print('-' * (col_len + 9))
-    for i in text:
+    for i in freq_text:
         print(i[0] + ' ' * (col_len - len(i[0])) + '|', i[1])
 
-else:
-    print('Топ-5:')
-    for i in text.keys():
-        print(f'{i}: {text[i]}')
+
+if __name__ == "__main__":
+    text = stdin.read()
+    text = tokenize(normalize(text))
+    if len(text) == 0:
+        print('Нету текста для статистики.')
+        quit()
+    text = stats_wo_table(text)
+
+    USE_TABLE = True
+
+    if USE_TABLE:
+        table(text)
+
+    else:
+        print('Топ-5:')
+        for i in text.keys():
+            print(f'{i}: {text[i]}')
