@@ -8,7 +8,7 @@ def stats_wo_table(tknzd_txt):
     return tknzd_txt
 
 def table(freq_text):
-    col_len = max(freq_text.values()) + 5
+    col_len = max(list(map(len, freq_text.keys()))) + 5
     freq_text = top_n(freq_text, n=5)
     print('слово' + ' ' * (col_len - 5) + '| частота')
     print('-' * (col_len + 9))
