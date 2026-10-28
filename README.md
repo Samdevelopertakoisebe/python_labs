@@ -311,6 +311,7 @@ print(read_text(use_path, encoding="utf-8"))
 ![Выводы](./images/lab04/Screenshot_626.png)
 
 ## Задание 2
+### Ввод нескольких файлов организован через запятую (--in text1.txt,text2.txt)
 ```python
 import argparse
 
