@@ -5,7 +5,8 @@ from typing import Iterable, Sequence
 
 def ensure_parent_dir(path: str | Path) -> None:
     """Для write_csv; создаёт все директории, которых не хватает до файла."""
-    Path(path[:path.replace('\\', '/').rfind('/')]).mkdir(parents=True, exist_ok=True)
+    end_path = str(path).replace('\\', '/').rfind('/')
+    Path(str(path)[:end_path]).mkdir(parents=True, exist_ok=True)
 
 
 def read_text(path: str | Path, encoding: str = "utf-8") -> str:
