@@ -1,0 +1,13 @@
+file,words,count
+input.txt,a,24
+input.txt,aa,3
+input.txt,aaaa,3
+input.txt,aaa,2
+input.txt,aaaaa,1
+input.txt,aaaaaaa,1
+input2.txt,b,36
+input2.txt,bbbb,5
+input2.txt,bb,4
+input2.txt,bbb,3
+input2.txt,bbbbb,2
+input2.txt,bbbbbb,1
