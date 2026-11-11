@@ -457,3 +457,63 @@ if __name__ == '__main__':
 Вика,67
 Берн,-1.5
 ```
+### people.json
+```json
+[{"Имя": "Ольга", "Возраст":  84},{"Имя": "Платон", "Возраст":  21},{"Имя": "Егор", "Возраст":  67}]
+```
+### people_from_csv.json
+```json
+[
+  {
+    "Имя": "Ваня",
+    "Возраст": "39"
+  },
+  {
+    "Имя": "Вика",
+    "Возраст": "67"
+  },
+  {
+    "Имя": "Берн",
+    "Возраст": "-1.5"
+  }
+]
+```
+### people_from_json.csv
+```csv
+Имя,Возраст
+Ольга,84
+Платон,21
+Егор,67
+```
+
+## Задание B
+### Файл
+```python
+import csv
+from xlsxwriter import Workbook
+from pathlib import Path
+
+
+def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
+    csv_path = Path(csv_path)
+    xlsx_path = Path(xlsx_path)
+    wb = Workbook(xlsx_path)
+    ws = wb.add_worksheet('Sheet1')
+
+    with open(csv_path, encoding='utf-8') as f:
+        reader = csv.reader(f)
+        row = 0
+        for row_data in reader:
+            for col, cell in enumerate(row_data):
+                ws.write(row, col, cell)
+            row += 1
+    wb.close()
+
+
+
+if __name__ == "__main__":
+    path = __file__[:__file__.find('src')] + 'data/lab05/'
+    csv_to_xlsx(path + 'samples/people.csv', path + 'out/people_from_csv.xlsx')
+```
+### people_from_csv.xlsx
+![xlsx](images/lab05/Screenshot_643.png)
