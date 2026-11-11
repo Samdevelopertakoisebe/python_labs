@@ -5,6 +5,12 @@ from .json_csv import check_errors
 
 
 def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
+    """
+    Преобразует .csv файл в .xlsx.
+    :param csv_path:
+    :param xlsx_path:
+    :return:
+    """
     csv_path = Path(csv_path)
     xlsx_path = Path(xlsx_path)
     check_errors(csv_path, 'a.json', 'csv')
