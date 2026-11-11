@@ -438,7 +438,8 @@ def csv_to_json(csv_path, json_path):
     check_errors(json_path, csv_path, 'csv')
     with open(csv_path, encoding='utf-8') as csv_file:
         csv_res = list(csv.DictReader(csv_file))
-        if not all([None not in set(list(i.keys())) for i in csv_res]):
+        if not all([None not in set(list(map(lambda x: x.strip(), i.keys()))) and
+                    '' not in set(list(map(lambda x: x.strip(), i.keys()))) for i in csv_res]):
             raise ValueError('Пустой заголовок CSV.')
     with open(json_path, mode='w', encoding='utf-8') as json_file:
         json.dump(csv_res, json_file, ensure_ascii=False, indent=2)
@@ -449,7 +450,19 @@ if __name__ == '__main__':
     path = __file__[:__file__.find('src')] + 'data/lab05/'
     csv_to_json(path + 'samples/people.csv', path + 'out/people_from_csv.json')
     json_to_csv(path + 'samples/people.json', path + 'out/people_from_json.csv')
+
+    csv_to_json(path + 'samples/cities.csv', path + 'out/cities_from_csv.json')
 ```
+### cities.csv
+```
+Мурманск, Подольск, Рим,,Муромск
+,,Нью-Юорк,,Ярославль
+Москва, Краснодар, Омск, Санкт-Петербург,Мухосранск
+Сан-Франциско,,Магнитогорск,
+Детроит,,Волгоград
+```
+#### При его открытии:
+![Error](images/lab05/Screenshot_644.png)
 ### people.csv
 ```csv
 Имя,Возраст
