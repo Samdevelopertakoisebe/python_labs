@@ -590,7 +590,7 @@ text_cat.txt
 ### запуск stats
 ![stats_out](images/lab06/Screenshot_678.png)
 ### stats --help
-![stats_help](images/lab06/Screenshot_671.png)
+![stats_help](images/lab06/Screenshot_681.png)
 ## Задание 2
 ### cli_convert.py
 ```python
