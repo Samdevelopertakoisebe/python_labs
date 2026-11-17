@@ -532,3 +532,102 @@ if __name__ == "__main__":
 ```
 ### people_from_csv.xlsx
 ![xlsx](images/lab05/Screenshot_643.png)
+
+# Лабараторная работа №6
+## Задание 1
+### cli_text.py
+```python
+import argparse
+from pathlib import Path
+from ..lab03.text_stats import table
+
+def main():
+    parser = argparse.ArgumentParser(description="CLI‑утилиты лабораторной №6")
+    subparsers = parser.add_subparsers(dest="command")
+
+    # подкоманда cat
+    cat_parser = subparsers.add_parser("cat", help="Вывести содержимое файла")
+    cat_parser.add_argument("--input", required=True)
+    cat_parser.add_argument("-n", action="store_true", help="Нумеровать строки")
+
+    # подкоманда stats
+    stats_parser = subparsers.add_parser("stats", help="Частоты слов")
+    stats_parser.add_argument("--input", required=True)
+    stats_parser.add_argument("--top", type=int, default=5, help="Количество слов для сводки, изначально 5")
+
+    args = parser.parse_args()
+
+    file_path = (Path(__file__).resolve().parent / args.input).resolve()
+    if args.command == "cat":
+        with open(file_path, encoding='utf-8') as file:
+            line_num = 0
+            for line in file:
+                line_num += 1
+                if args.n:
+                    print(f'{line_num} {line.strip()}')
+                else:
+                    print(line.strip())
+    elif args.command == "stats":
+        with open(file_path, encoding='utf-8') as file:
+            table(file.read(), needs_tokenizing=True, top=args.top)
+
+
+if __name__ == '__main__':
+    main()
+```
+### файл text_cat.txt
+```txt
+This
+is a text
+in multiple lines
+named
+text_cat.txt
+```
+### запуск cat
+![cat_out](images/lab06/Screenshot_679.png)
+### cat --help
+![cat_help](images/lab06/Screenshot_680.png)
+### запуск stats
+![stats_out](images/lab06/Screenshot_678.png)
+### stats --help
+![stats_help](images/lab06/Screenshot_671.png)
+## Задание 2
+### cli_convert.py
+```python
+import argparse
+from ...src.lab05.json_csv import json_to_csv, csv_to_json
+from ...src.lab05.csv_xlsx import csv_to_xlsx
+from pathlib import Path
+
+def main():
+    parser = argparse.ArgumentParser(description="Конвертеры данных")
+    sub = parser.add_subparsers(dest="cmd")
+
+    p1 = sub.add_parser("json2csv")
+    p1.add_argument("--in", dest="input", required=True)
+    p1.add_argument("--out", dest="output", required=True)
+
+    p2 = sub.add_parser("csv2json")
+    p2.add_argument("--in", dest="input", required=True)
+    p2.add_argument("--out", dest="output", required=True)
+
+    p3 = sub.add_parser("csv2xlsx")
+    p3.add_argument("--in", dest="input", required=True)
+    p3.add_argument("--out", dest="output", required=True)
+
+    args = parser.parse_args()
+
+    in_path = (Path(__file__).resolve().parent / args.input).resolve()
+    out_path = (Path(__file__).resolve().parent / args.output).resolve()
+    if args.cmd == "json2csv":
+        json_to_csv(in_path, out_path)
+    if args.cmd == "csv2json":
+        csv_to_json(in_path, out_path)
+    if args.cmd == "csv2xlsx":
+        csv_to_xlsx(in_path, out_path)
+
+
+if __name__ == "__main__":
+    main()
+```
+### смысла показывать запуски нет, т.к. --help не нужен, а сама работа зависит от 5-й лабы.

@@ -13,7 +13,7 @@ def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
     """
     csv_path = Path(csv_path)
     xlsx_path = Path(xlsx_path)
-    check_errors(csv_path, 'a.json', 'csv')
+    check_errors(Path('a.json'), csv_path, 'csv')
     wb = Workbook(xlsx_path)
     ws = wb.add_worksheet('Sheet1')
 

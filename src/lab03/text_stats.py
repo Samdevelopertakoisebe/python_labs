@@ -1,5 +1,5 @@
 from sys import stdin
-from ...src.lib.text import *
+from ..lib.text import *
 
 def stats_wo_table(tknzd_txt):
     print('Всего слов:', len(tknzd_txt))
@@ -7,9 +7,14 @@ def stats_wo_table(tknzd_txt):
     print('Уникальных слов:', len(tknzd_txt))
     return tknzd_txt
 
-def table(freq_text):
-    col_len = max(list(map(len, freq_text.keys()))) + 5
-    freq_text = top_n(freq_text, n=5)
+def table(text, **kwargs):
+    top = 5
+    if kwargs['needs_tokenizing']: freq_text = count_freq(tokenize(normalize(text)))
+    else: freq_text = text
+    if kwargs['top']: top = kwargs['top']
+    top = min(top, len(freq_text))
+    col_len = max(max(list(map(len, freq_text.keys()))), 5)
+    freq_text = top_n(freq_text, n=top)
     print('слово' + ' ' * (col_len - 5) + '| частота')
     print('-' * (col_len + 9))
     for i in freq_text:
