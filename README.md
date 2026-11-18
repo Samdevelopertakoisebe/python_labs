@@ -633,4 +633,4 @@ if __name__ == "__main__":
 ### смысла показывать запуски нет, т.к. --help не нужен, а сама работа зависит от 5-й лабы.
 #### json2csv: json2csv --in ../../data/lab05/samples/people.json --out ../../data/lab06/out/people_from_json.csv
 #### csv2json: csv2json --in ../../data/lab05/samples/people.csv --out ../../data/lab06/out/people_from_csv.json
-#### csv2xlsx: csv2xlsx --in ../../data/lab05/samples/people.csv --out ../../data/lab06/out/people_from_csv.xlsx
+#### csv2xlsx: csv2xlsx --in ../../data/lab05/samples/people.csv --out ../../data/lab06/out/people_from_csv.xlsx    

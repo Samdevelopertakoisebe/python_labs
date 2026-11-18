@@ -19,18 +19,22 @@ def main():
     args = parser.parse_args()
 
     file_path = (Path(__file__).resolve().parent / args.input).resolve()
-    if args.command == "cat":
-        with open(file_path, encoding='utf-8') as file:
-            line_num = 0
-            for line in file:
-                line_num += 1
-                if args.n:
-                    print(f'{line_num} {line.strip()}')
-                else:
-                    print(line.strip())
-    elif args.command == "stats":
-        with open(file_path, encoding='utf-8') as file:
-            table(file.read(), needs_tokenizing=True, top=args.top)
+
+    try:
+        if args.command == "cat":
+            with open(file_path, encoding='utf-8') as file:
+                line_num = 0
+                for line in file:
+                    line_num += 1
+                    if args.n:
+                        print(f'{line_num} {line.strip()}')
+                    else:
+                        print(line.strip())
+        elif args.command == "stats":
+            with open(file_path, encoding='utf-8') as file:
+                table(file.read(), needs_tokenizing=True, top=args.top)
+    except OSError:
+        parser.error(f'Invalid path: {file_path}')
 
 
 if __name__ == '__main__':
